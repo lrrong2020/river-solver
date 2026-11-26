@@ -2,6 +2,10 @@
 
 A local, heads-up no-limit Hold’em river solver. Explore a fixed five-card board with weighted hole-card ranges, a starting pot, and equal effective stacks. The out-of-position player acts first. Amounts are in big blinds and the game has zero rake.
 
+## Inspiration
+
+Thanks to Noam Brown for inspiring this project. At the No Limit Finals, he described how Astra could build a poker river solver from a single prompt. Riverlab began with the prompt “Build a river solver for NLHE”. [Watch Brown’s original interview](https://www.youtube.com/watch?v=tRaFbDFBl_A).
+
 ## Quick start · 快速开始
 
 You’ll need Git, Node.js 20 or newer with npm, and a modern browser. The project has no third-party runtime dependencies or build step.
