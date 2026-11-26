@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101513">
+  <title>Riverlab · NLHE River Solver</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%23c3e78e'/%3E%3Cpath d='m20 6 11 14-11 14L9 20Z' fill='%23232c21'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="topbar"><div class="top-inner">
+    <a class="brand" href="./" aria-label="Riverlab home"><span class="brand-symbol" aria-hidden="true"><i></i><i></i></span>Riverlab</a>
+    <nav aria-label="Workspace views"><button class="nav-item active" id="nav-setup" aria-pressed="true">Spot editor</button><button class="nav-item" id="nav-results" aria-pressed="false">Strategy explorer</button></nav>
+    <span class="game-tag">Heads-up NLHE</span>
+  </div></header>
+  <main>
+    <div class="page-heading"><div><h1 id="page-title">River workspace</h1></div><div class="run-controls"><span class="status" id="status" role="status">Ready to solve</span><button class="primary" id="run"><span aria-hidden="true">▶</span> Run solve</button></div></div>
+    <div id="error" class="notice error" role="alert" hidden></div>
+    <div id="setup">
+      <section class="board-panel panel" aria-label="Spot parameters">
+        <div class="board-area"><div class="top-label"><h2>River board</h2><button class="text-btn" id="edit-board">Edit board</button></div><div class="playing-cards" id="cards"></div></div>
+        <div class="pot-area"><label for="pot">Starting pot</label><div class="num-box"><input type="number" id="pot" min="0.01" step="0.01"><span>bb</span></div></div>
+        <div class="stack-area"><label for="stack">Effective stack</label><div class="num-box"><input type="number" id="stack" min="0.01" step="0.01"><span>bb</span></div></div>
+      </section>
+      <div class="setup-layout">
+        <section class="panel range-panel"><div class="panel-header"><h2>Range editor</h2><div class="switcher" aria-label="Range seat" id="range-seats"></div></div>
+          <div class="range-meta"><div><span class="seat-square"></span><strong id="range-role"></strong><span class="sep">/</span><span class="muted" id="range-count"></span></div><button id="paste" class="text-btn">Paste range</button></div>
+          <div class="matrix-wrap"><div class="matrix" id="matrix" role="group" aria-label="Starting hand classes"></div></div>
+          <div class="brush"><label for="brush-weight">Brush weight</label><div class="brush-tools"><div class="num-box small"><input id="brush-weight" type="number" min="0" max="100" step="any" value="100"><span>%</span></div><button class="quiet" id="erase" aria-pressed="false">Erase</button></div><span class="brush-tip">Click or drag to paint</span></div>
+        </section>
+        <aside class="side">
+          <section class="panel"><div class="panel-header"><h2>Betting tree</h2><span class="outline-icon" aria-hidden="true">⑂</span></div>
+            <div class="section-body"><div class="section-label">Configure player</div><div class="switcher wide" id="tree-seats"></div><label class="field">Opening bets <span class="muted">% of pot</span><input type="text" id="bets" spellcheck="false" placeholder="e.g. 50, 100"></label>
+            <label class="field">Raise to <span class="muted">× wager faced</span><input type="text" id="raises" spellcheck="false" placeholder="e.g. 3"></label>
+            <label class="toggle-line"><span>Include all-in</span><input type="checkbox" id="all-in"><span class="toggle" aria-hidden="true"></span></label>
+            <label class="inline-field"><span>Max raises per line</span><input type="number" id="raise-cap" min="0" step="1"></label></div>
+            <button class="bottom-link" id="preview-tree"><span>Preview betting tree</span><span aria-hidden="true">›</span></button>
+          </section>
+          <section class="panel"><div class="panel-header"><h2>Solve settings</h2></div><div class="section-body"><label class="field">Exploitability target <span class="muted">% of pot</span><input type="number" id="target" step="any" min="0" value="0.5"></label><label class="field">Iteration limit<input type="number" id="iterations" step="1" min="1" value="5000"></label></div></section>
+        </aside>
+      </div>
+    </div>
+    <section id="results" hidden></section>
+  </main>
+  <dialog id="modal" aria-labelledby="dialog-title"><div class="dialog-head"><h2 id="dialog-title"></h2><button class="close" aria-label="Close dialog">×</button></div><div id="dialog-body"></div></dialog>
+  <script type="module" src="./ui.js"></script>
+</body>
+</html>
